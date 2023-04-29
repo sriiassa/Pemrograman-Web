@@ -1,24 +1,24 @@
 <?php
-    session_start();
     include_once "config.php";
     
+    $psn = "";
     if(isset($_POST['login'])) {
         $username = $_POST['username'];
-        $password = md5($_POST['password']);
-        
-        $conn   = mysqli_connect($host, $user, $pass, $db, $port) or die("Koneksi gagal!");
-        $sql    = mysqli_query($conn, "SELECT * FROM tb_user WHERE username='$username' AND password='$password'");
-        $cek    = mysqli_num_rows($sql);
-    
-        if($cek > 0) {
-            header("Location: dashboard.php");
-        } else {
-            echo "<script>
-                        alert('Username atau Password salah!')
-                    </script>";   
-        }
-    }
+        $password = $_POST['password'];
 
+        $conn   = mysqli_connect($host, $user, $pass, $db, $port) or die("Koneksi gagal!");
+        $sql    = "SELECT tu.nama, tu.email, tu.username, tu.passkey, tu.iduser FROM tb_user tu WHERE username='".$username."'";
+        $result = mysqli_query($conn, $sql);
+        $cek    = mysqli_num_rows($result);
+        $h      = mysqli_fetch_assoc($result);
+
+        if(md5($password) == $h['passkey']) {
+            $_SESSION['login'] = $h['iduser'];
+            header("location: dashboard.php");
+        } else {
+            $psn = "Akses ditolak!";
+        }
+    } 
 ?>
 
 <!DOCTYPE html>
@@ -31,7 +31,9 @@
 </head>
 <body>
 
-    <form action="login.php" method="POST">
+    <div><?= $psn; ?></div>
+    <form action="login.php" method="POST" autocomplete="off">
+        <h3>Form Login</h3>
         <table>
             <tr>
                 <td><label for="username">Username</label></td>
