@@ -8,7 +8,7 @@
 </head>
 <body>
 
-    <form action="Latihan1" id="Latihan1" method="POST" onsubmit="return checkform(this)">
+    <form action="Latihan2" id="Latihan2" method="POST" onsubmit="return checkform()">
 
         <table>
             <tr>
@@ -63,7 +63,7 @@
 <script> 
 
     function checkform() {
-        let form        = document.getElementById("Latihan1").elements;
+        let form        = document.getElementById("Latihan2").elements;
         let nim         = form.namedItem("nim").value;
         let jk          = form.namedItem("jk").value;
         let jurusan     = form.namedItem("jurusan").value;
