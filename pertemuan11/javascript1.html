@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Membaca Data JSon</title>
+</head>
+<body>
+
+    <table>
+        <tr>
+            <td>Nama</td>
+            <td> : <input type="text" id="nama"></td>
+        </tr>
+        <tr>         
+            <td>Alamat</td>
+            <td> : <input type="text" id="alamat"></td>
+        </tr>
+        <tr>         
+            <td>Prodi</td>
+            <td> : <input type="text" id="prodi"></td>
+        </tr>
+        <tr>         
+            <td>Jurusan</td>
+            <td> : <input type="text" id="jurusan"></td>
+        </tr>
+        <tr>         
+            <td>Tgl.Lahir</td>
+            <td> : <input type="date" id="tgl_lahir"></td>
+        </tr>
+    </table>
+    
+    
+<!-- javascript -->
+<script>
+    const jsHTTP = new XMLHttpRequest();
+    jsHTTP.open("GET", "http://localhost/pertemuan11/javascript1.php");
+    jsHTTP.send();
+
+    jsHTTP.onload = function() {
+        const data = JSON.parse(this.responseText);
+        console.log(data);
+        document.getElementById("nama").innerHTML = data.nama;
+        document.getElementById("alamat").innerHTML = data.alamat;
+        document.getElementById("prodi").innerHTML = data.prodi;
+        document.getElementById("jurusan").innerHTML = data.jurusan;
+        document.getElementById("tgl_lahir").value = data.tgl_lahir;
+
+    }
+</script>
+
+</body>
+</html>
