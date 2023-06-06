@@ -11,8 +11,7 @@
 <body>
     
     <div id="TampilData"></div>
-        
-    
+         
 <!-- javascript -->
 <script>
     const jsHTTP = new XMLHttpRequest();
@@ -23,9 +22,9 @@
         const data = JSON.parse(this.responseText);
         console.log(data);
         
-        let tx = "<center><h3>List Data</h3></center>";
-        tx += "<center><a href='index.html'><button>Tambah Data</button></a>"
-        tx += "<table border='1' cellspacing='0' cellpadding='7'><tr><th>#</th><th>Nama</th><th>Email</th><th>Username</th><th>Aksi</th></tr></center>";
+        let tx = "<center><h3>List Data</h3>";
+        tx += "<a href='index.html'><button>Tambah Data</button></a><br>";
+        tx += "<br><table border='1' cellspacing='0' cellpadding='7'><tr><th>#</th><th>Nama</th><th>Email</th><th>Username</th><th>Aksi</th></tr></center>";
         
         let no = 1;
         for(let i=0; i<data.affected; i++) {
