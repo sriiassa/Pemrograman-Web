@@ -5,53 +5,51 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Tambah Data</title>
+    <title>Tambah | Javascript</title>
 </head>
 <body>
 
     <center>
         <div class="container">
             <h3>Form Data</h3>
-            <form>
-                <table>
-                    <tr>
-                        <td>Nama</td>
-                        <td> : <input type="text" id="nama"></td>
-                    </tr>
-                    <tr>         
-                        <td>Email</td>
-                        <td> : <input type="email" id="email"></td>
-                    </tr>
-                    <tr>         
-                        <td>Username</td>
-                        <td> : <input type="text" id="username"></td>
-                    </tr>
-                    <tr>         
-                        <td>Password</td>
-                        <td> : <input type="password" id="password"></td>
-                    </tr>
-                    <tr>         
-                        <td>Password Confirm</td>
-                        <td> : <input type="password" id="confirm"></td>
-                    </tr>
-                    <tr>
-                        <td><br><button type="button" id="tambah" onclick="TambahData()">Tambah</button></td>
-                    </tr>
-                </table>
-            </form>
+            <table>
+                <tr>
+                    <td>Nama</td>
+                    <td> : <input type="text" id="nama"></td>
+                </tr>
+                <tr>         
+                    <td>Email</td>
+                    <td> : <input type="email" id="email"></td>
+                </tr>
+                <tr>         
+                    <td>Username</td>
+                    <td> : <input type="text" id="username"></td>
+                </tr>
+                <tr>         
+                    <td>Password</td>
+                    <td> : <input type="password" id="password"></td>
+                </tr>
+                <tr>         
+                    <td>Password Confirm</td>
+                    <td> : <input type="password" id="confirm"></td>
+                </tr>
+                <tr>
+                    <td><br><button type="button" onclick="TambahData()">Tambah</button></td>
+                </tr>
+            </table>
         </div>
     </center>
 
     <script>
 
         function TambahData() {
-            let nma = document.getElementById("nama").value;
-            let eml = document.getElementById("email").value;
+            let nm  = document.getElementById("nama").value;
+            let ema = document.getElementById("email").value;
             let usr = document.getElementById("username").value;
-            let pas = document.getElementById("password").value;
-            let con = document.getElementById("confirm").value;
-            let params = "nama="+nma+"&email="+eml+"&username="+usr+"&pass1="+pas+"&pass2="+con;
-            let cx = "https://webpro.ptov.my.id/api/curduser.php?aksi=store";
+            let p1  = document.getElementById("password").value;
+            let p2  = document.getElementById("confirm").value;
+            let params = "nama="+nm+"&email="+ema+"&username="+usr+"&pass1="+p1+"&pass2="+p2;
+            let cx  = "https://webpro.ptov.my.id/api/curduser.php?aksi=store";
 
             const jsHTTP = new XMLHttpRequest();
             jsHTTP.open("POST", cx, true);
@@ -61,7 +59,8 @@
             jsHTTP.onload = function() {
                 const data = JSON.parse(this.responseText);
                 if(data.error == 0) {
-                   window.location.replace='view.html';
+                   window.location.replace = 'view.html';
+                   window.location.href = 'view.html';
                 }          
             }
         }
