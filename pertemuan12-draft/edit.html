@@ -12,31 +12,33 @@
     <center>
         <div class="container">
             <h3>Form Data</h3>
-            <table>
-                <tr>
-                    <td>Nama</td>
-                    <td> : <input type="text" id="nama"></td>
-                </tr>
-                <tr>         
-                    <td>Email</td>
-                    <td> : <input type="email" id="email"></td>
-                </tr>
-                <tr>         
-                    <td>Username</td>
-                    <td> : <input type="text" id="username"></td>
-                </tr>
-                <tr>         
-                    <td>Password</td>
-                    <td> : <input type="password" id="password"></td>
-                </tr>
-                <tr>         
-                    <td>Password Confirm</td>
-                    <td> : <input type="password" id="confirm"></td>
-                </tr>
-                <tr>
-                    <td><br><button type="button" id="update" onclick="UpdateData()">Update</button></td>
-                </tr>
-            </table>
+            <form action="" method="POST">
+                <table>
+                    <tr>
+                        <td>Nama</td>
+                        <td> : <input type="text" id="nama"></td>
+                    </tr>
+                    <tr>         
+                        <td>Email</td>
+                        <td> : <input type="email" id="email"></td>
+                    </tr>
+                    <tr>         
+                        <td>Username</td>
+                        <td> : <input type="text" id="username"></td>
+                    </tr>
+                    <tr>         
+                        <td>Password</td>
+                        <td> : <input type="password" id="password"></td>
+                    </tr>
+                    <tr>         
+                        <td>Password Confirm</td>
+                        <td> : <input type="password" id="confirm"></td>
+                    </tr>
+                    <tr>
+                        <td><br><button type="button" id="cmdupdate" onclick="UpdateData()">Update</button></td>
+                    </tr>
+                </table>
+            </form>
         </div>
     </center>
 
@@ -48,7 +50,7 @@
         let prid = pr.get('id');
 
         const jsHTTP = new XMLHttpRequest();
-        let cx = "https://webpro.ptov.my.id/api/curduser.php?aksi=get&q="+prid
+        let cx = "https://webpro.ptov.my.id/api/curduser.php?aksi=get&q="+prid;
         jsHTTP.open("GET", cx);
         jsHTTP.send();
 
@@ -60,13 +62,13 @@
         }
 
         function UpdateData() {
-            let nma = document.getElementById("nama").value;
-            let eml = document.getElementById("email").value;
+            let nm  = document.getElementById("nama").value;
+            let ema = document.getElementById("email").value;
             let usr = document.getElementById("username").value;
-            let pas = document.getElementById("password").value;
-            let con = document.getElementById("confirm").value;
-            let params = "nama="+nma+"&email="+eml+"&username="+usr+"&pass1="+pas+"&pass2="+con+"$iduser="+prid;
-            let cx = "https://webpro.ptov.my.id/api/curduser.php?aksi=update";
+            let p1  = document.getElementById("password").value;
+            let p2  = document.getElementById("confirm").value;
+            let params = "nama="+nm+"&email="+ema+"&username="+usr+"&pass1="+p1+"&pass2="+p2+"$iduser="+prid;
+            let cx  = "https://webpro.ptov.my.id/api/curduser.php?aksi=update";
 
             jsHTTP.open("POST", cx, true);
             jsHTTP.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -75,6 +77,7 @@
             jsHTTP.onload = function() {
                 const data = JSON.parse(this.responseText);
                 console.log(data);           
+                window.location.href = 'view.html';
             }
         }
 
