@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Edit | Javascript</title>
+</head>
+<body>
+
+    <center>
+        <div class="container">
+            <h3>Form Data</h3>
+            <form action="" method="POST">
+                <table>
+                    <tr>
+                        <td>Nama</td>
+                        <td> : <input type="text" id="nama"></td>
+                    </tr>
+                    <tr>         
+                        <td>Email</td>
+                        <td> : <input type="email" id="email"></td>
+                    </tr>
+                    <tr>         
+                        <td>Username</td>
+                        <td> : <input type="text" id="username"></td>
+                    </tr>
+                    <tr>         
+                        <td>Password</td>
+                        <td> : <input type="password" id="password"></td>
+                    </tr>
+                    <tr>         
+                        <td>Password Confirm</td>
+                        <td> : <input type="password" id="confirm"></td>
+                    </tr>
+                    <tr>
+                        <td><br><button type="button" id="cmdupdate" onclick="UpdateData()">Update</button></td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </center>
+
+
+    <script>
+        
+        const qstring = window.location.search;
+        const pr = new URLSearchParams(qstring);
+        let prid = pr.get('id');
+
+        const jsHTTP = new XMLHttpRequest();
+        let cx = "https://webpro.ptov.my.id/api/curduser.php?aksi=get&q="+prid;
+        jsHTTP.open("GET", cx);
+        jsHTTP.send();
+
+        jsHTTP.onload = function() {
+            const data = JSON.parse(this.responseText);
+            document.getElementById("nama").value = data.isi[0][0];
+            document.getElementById("email").value = data.isi[0][1];
+            document.getElementById("username").value = data.isi[0][2];          
+        }
+
+        function UpdateData() {
+            let nm  = document.getElementById("nama").value;
+            let ema = document.getElementById("email").value;
+            let usr = document.getElementById("username").value;
+            let p1  = document.getElementById("password").value;
+            let p2  = document.getElementById("confirm").value;
+            let params = "nama="+nm+"&email="+ema+"&username="+usr+"&pass1="+p1+"&pass2="+p2+"$iduser="+prid;
+            let cx  = "https://webpro.ptov.my.id/api/curduser.php?aksi=update";
+
+            jsHTTP.open("POST", cx, true);
+            jsHTTP.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            jsHTTP.send(params);
+            
+            jsHTTP.onload = function() {
+                const data = JSON.parse(this.responseText);
+                console.log(data);           
+                window.location.href = 'view.html';
+            }
+        }
+
+    </script>
+    
+</body>
+</html>
