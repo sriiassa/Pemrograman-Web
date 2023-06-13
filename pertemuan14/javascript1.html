@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>jQuery | Part 1</title>
+</head>
+<style>
+    body {
+        background-color: rgb(216, 216, 216);
+    }
+
+    .container {
+        width: 50%;
+        margin: auto;
+        padding-top: 5%;
+    }
+
+    h2 {
+        padding-bottom: 20px;
+    }
+
+    .konten1 {
+        padding-bottom: 20px;
+    }
+
+    .konten2 {
+        padding-bottom: 20px;
+    }
+
+    button {
+        padding: 10px 15px;
+        border: none;
+        background-color: rgb(95, 95, 95);
+        color: white;
+        border-radius: 5px;
+    }
+</style>
+
+<body>
+
+    <div class="container">
+        <h2>Judul Konten</h2>
+        <div id="subjudul1">Sub Judul ID</div>
+        <p class="konten1">Isi konten</p>
+        <div id="subjudul2">Sub Judul Class</div>
+        <p class="konten2">Isi konten</p>
+        <button>Lihat Selengkapnya <i class="fa-solid fa-angles-right fa-xs"></i></button>
+    </div>
+
+    <!-- jQuery -->
+    <script src="jquery-3.7.0.min.js"></script>
+    <script>
+        $(function() {
+            $("h2").html("<u>Latihan jQuery</u>");
+
+            $("#subjudul1").html("<li><b>Konten pengganti pada elemen <i>ID</i></b></li>");
+            $(".konten1").html("Lorem, ipsum dolor sit amet consectetur adipisicing elit. Incidunt consequatur quo nobis iusto eos labore iure quibusdam molestiae, enim commodi fugiat aliquam exercitationem. Natus, facere magni quia odio quo corrupti officiis officia fugit sed eius neque voluptatem eveniet temporibus vel omnis porro sunt voluptatum numquam! Libero omnis deserunt ab quae.");
+
+            $("#subjudul2").html("<li><b>Konten pengganti pada elemen <i>Class</i></b></li>");
+            $(".konten2").html("Lorem ipsum dolor sit, amet consectetur adipisicing elit. Magni laborum tempora ipsam quae deleniti odio quia aspernatur illo, voluptate, doloribus pariatur dolores temporibus libero quisquam. Molestias cum recusandae, fuga animi pariatur ullam necessitatibus laudantium praesentium labore quia voluptas architecto nemo! Similique magnam, earum ullam corporis iure totam blanditiis perferendis enim?");
+        }); 
+
+        // document.getElementById("isi").innerHTML = "Isi dari konten pengganti <b>(Konten ID)</b>";
+        // document.getElementsByClassName("isi");
+    </script>
+</body>
+</html>

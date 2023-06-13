@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery | Part 2</title>
+</head>
+<style>
+    body {
+        background-color: rgb(216, 216, 216);
+        font-family: cursive;
+        font-size: 14px;
+    }
+
+    .container {
+        width: 25%;
+        margin: 5% auto 0 auto;
+        background-color: rgb(63, 63, 63);
+        padding-top: 30px;
+        padding-bottom: 30px;
+        color: white;
+        border-radius: 30px 30px 0 0;
+    }
+
+    #navigasi button {
+        padding: 7px 15px;
+        border: none;
+        background-color: rgb(95, 95, 95);
+        color: white;
+        font-family: cursive;
+        font-size: 12px;
+        border-radius: 30px;
+    }
+
+    button {
+        padding: 7px 15px;
+        border: none;
+        background-color: rgb(95, 95, 95);
+        color: white;
+        font-family: cursive;
+        font-size: 12px;
+    }
+
+    #navigasi {
+       margin-bottom: 30px;
+       text-align: center;
+    }
+
+    h3 {
+        color: white;
+    }
+
+    hr {
+        border-color: rgb(95, 95, 95);
+    }
+
+    .hasil {
+        width: 25%;
+        margin: 10px auto 0 auto;
+        display: flex;
+        flex-direction: column;
+        background-color: rgb(63, 63, 63);
+        color: white;
+        border-radius: 0 0 30px 30px;
+    } 
+
+    #hasil {
+        padding: 10px 20px 50px 20px;
+        font-size: 12px;
+    }
+
+    .persegi:hover {
+        background-color: rgb(136, 136, 136);
+        transition: .5s;
+    }
+
+    .segitiga:hover {
+        background-color: rgb(136, 136, 136);
+        transition: .5s;
+    }
+
+</style>
+
+<body>
+
+    <div class="container">
+            
+        <div id="navigasi">
+            <h3>Judul Form</h3>
+            <button type="button" class="persegi">Hitung Luas Persegi</button>
+            <button type="button" class="segitiga">Hitung Luas Segitiga</button>
+        </div>
+
+        <hr>
+        <div id="HitungLuasPersegi">
+            <br>
+            <center>
+                <table>
+                    <tr>
+                        <td><label for="panjang">Panjang</label></td>
+                        <td>&nbsp;&nbsp;: <input type="number" class="panjang" required></td>
+                    </tr>
+                    <tr>
+                        <td><label for="lebar">Lebar</label></td>
+                        <td>&nbsp;&nbsp;: <input type="number" class="lebar" required></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="lpersegi">Hitung Luas</button></td>
+                    </tr>
+                </table>
+            </center>
+        </div>
+
+        <div id="HitungLuasSegitiga">
+            <br>
+            <center>
+                <table>
+                    <tr>
+                        <td><label for="alas">Alas</label></td>
+                        <td>&nbsp;&nbsp;: <input type="number" class="alas" required></td>
+                    </tr>
+                    <tr>
+                        <td><label for="tinggi">Tinggi</label></td>
+                        <td>&nbsp;&nbsp;: <input type="number" class="tinggi" required></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="lsegitiga">Hitung Luas</button></td>
+                    </tr>
+                </table>
+            </center>
+        </div>
+    </div>
+    <div class="hasil">
+        <div id="hasil">Hasilnya : </div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="jquery-3.7.0.min.js"></script>
+    <script>
+        $(function() {
+            $("#hasil").hide();
+            $("#HitungLuasPersegi").hide();
+            $("#HitungLuasSegitiga").hide();
+
+            let judul = "Klik Tombol";
+
+            $("h3").html("Luas Bangun Datar");
+
+            $(".persegi").click(function() {
+                $("#HitungLuasSegitiga").hide(500);
+                $("#HitungLuasPersegi").show(500);
+                judul = "Luas Persegi";
+                $("h3").html(judul);
+            });
+
+            $(".segitiga").click(function() {
+                $("#HitungLuasPersegi").hide(500);
+                $("#HitungLuasSegitiga").show(500);
+                judul = "Luas Segitiga";
+                $("h3").html(judul);
+            });
+
+            // hitung luas persegi
+            $(".lpersegi").click(function() {
+                let p = $(".panjang").val();
+                let l = $(".lebar").val();
+                let lp = p*l;
+                let tx = "<center><h4>HASIL</h4></center>Luas Persegi dengan nilai : <br>";
+                tx += "Panjang = "+p+"cm<br>Lebar&nbsp;&nbsp;&nbsp; = "+l+"cm <br>";
+                tx += "Luas&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = Panjang X Lebar<br>";
+                tx += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = "+p+" X "+l+"<br>";
+                tx += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = "+lp+"<br>Jadi, Luas dari persegi tersebut adalah "+lp+"cm";
+
+                $("#hasil").html(tx);
+                $("#hasil").show(500);
+            });
+
+            // hitung luas segitiga
+            $(".lsegitiga").click(function() {
+                let a = $(".alas").val();
+                let t = $(".tinggi").val();
+                let ls = a*t;
+                let tx = "<center><h4>HASIL</h4></center>Luas Segitiga dengan nilai : <br>";
+                tx += "Alas&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = "+a+"cm<br>Tinggi&nbsp;&nbsp;&nbsp; = "+t+"cm <br>";
+                tx += "Luas&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = Alas X Tinggi<br>";
+                tx += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = "+a+" X "+t+"<br>";
+                tx += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = "+ls+"<br>Jadi, Luas dari persegi tersebut adalah "+ls+"cm";
+           
+                $("#hasil").html(tx);
+                $("#hasil").show(500);
+            });
+        })
+    </script>
+</body>
+</html>
